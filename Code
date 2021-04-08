@@ -1,0 +1,143 @@
+@name WeaponSystem
+@inputs E:entity E2:entity E3:entity B1 B2 Weapons Aimpots:vector
+@outputs A W1:vector W2:vector W3:vector
+@persist 
+@trigger 
+
+interval(30)
+
+if(first()||dupefinished()){
+
+A=0
+holoCreate(1)
+holoScale(1,vec(1,1,1))
+holoMaterial(1,"cube")
+holoColor(1,vec(255,0,0))
+holoParent(1,entity())
+holoEntity(1)
+holoAng(1,ang(0,0,0))
+holoPos(1,entity():pos()+vec(38,0,-270))
+
+E:parentTo(holoEntity(1))
+E:setPos(entity():pos()+vec(0,0,1000))
+E:setAng(ang(vec(5,5,5)))
+
+
+
+holoCreate(2)
+holoScale(2,vec(1,1,1))
+holoMaterial(2,"cube")
+holoColor(2,vec(255,0,0))
+holoParent(2,entity())
+holoEntity(2)
+holoAng(2,ang(0,0,0))
+holoPos(2,entity():pos()+vec(260,0,-270))
+
+E2:setPos(entity():pos()+vec(0,0,1000))
+E2:setAng(ang(vec(5,5,5)))
+E2:parentTo(holoEntity(2))
+
+holoCreate(3)
+holoScale(3,vec(1,1,1))
+holoMaterial(3,"cube")
+holoColor(3,vec(255,0,0))
+holoParent(3,entity())
+holoEntity(3)
+holoAng(3,ang(0,0,0))
+holoPos(3,entity():pos()+vec(-184,0,-270))
+
+E3:setPos(entity():pos()+vec(0,0,1000))
+E3:setAng(ang(vec(5,5,5)))
+E3:parentTo(holoEntity(3))
+
+}
+
+
+
+E:setPos(holoEntity(1):pos())
+E2:setPos(holoEntity(2):pos())
+E3:setPos(holoEntity(3):pos())
+
+
+
+if(B1==1)
+{
+    
+    holoPos(1,entity():pos()+vec(38,-110,-270))
+    holoPos(2,entity():pos()+vec(260,-110,-270))
+    holoPos(3,entity():pos()+vec(-184,-110,-270))
+    
+    if(Weapons==1)
+    {
+    A=A+0.3
+          if(A>70){A=70}
+    holoPos(1,entity():pos()+vec(38,-110,-270+A))
+    holoPos(2,entity():pos()+vec(260,-110,-270+A))
+    holoPos(3,entity():pos()+vec(-184,-110,-270+A))
+    W1=Aimpots
+    W2=Aimpots
+    W3=Aimpots
+    }
+    
+    else
+    {
+    A=A-0.3
+    if(A<0){A=0}
+    
+    holoPos(1,entity():pos()+vec(38,-110,-270+A))
+    holoPos(2,entity():pos()+vec(260,-110,-270+A))
+    holoPos(3,entity():pos()+vec(-184,-110,1-270+A))
+    }
+
+}
+
+
+
+if(B2==1)
+{
+    
+    holoPos(1,entity():pos()+vec(38,110,-270))
+    holoPos(2,entity():pos()+vec(260,110,-270))
+    holoPos(3,entity():pos()+vec(-184,110,-270))
+    
+    if(Weapons==1)
+    {
+        A=A+0.3
+        if(A>70){A=70}
+    holoPos(1,entity():pos()+vec(38,110,-270+A))
+    holoPos(2,entity():pos()+vec(260,110,-270+A))
+    holoPos(3,entity():pos()+vec(-184,110,-270+A))
+    W1=Aimpots
+    W2=Aimpots
+    W3=Aimpots
+    }
+    else
+    {
+    A=A-0.3
+    if(A<0){A=0}
+    
+    holoPos(1,entity():pos()+vec(38,110,-270+A))
+    holoPos(2,entity():pos()+vec(260,110,-270+A))
+    holoPos(3,entity():pos()+vec(-184,110,-270+A))
+    
+    }
+    
+}
+
+
+elseif(B2!=1&&B1!=1)
+{
+    B1==0
+    B2==0
+    holoPos(1,entity():pos()+vec(38,0,-270))
+    holoPos(2,entity():pos()+vec(260,0,-270))
+    holoPos(3,entity():pos()+vec(-184,0,-270))
+    
+}
+
+
+
+
+
+
+
